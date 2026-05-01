@@ -1,18 +1,74 @@
-# React + Vite
+# 🎨 AI Resume Assistant - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The user interface for the AI-Powered Resume Application Assistant. Built with **React** and **Vite**, this SPA (Single Page Application) provides a seamless experience for uploading resumes and generating tailored application emails in real-time.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Tech Stack
 
-## React Compiler
+- **Framework:** React 18
+- **Build Tool:** Vite (for near-instant HMR)
+- **HTTP Client:** Axios
+- **State Management:** React Hooks (`useState`, `useEffect`)
+- **Icons:** React Icons / Lucide React
+- **Styling:** CSS3 (Modern Flexbox/Grid architecture)
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+---
 
-Note: This will impact Vite dev & build performances.
+## ✨ UI Features
 
-## Expanding the ESLint configuration
+- **Drag-and-Drop Interface:** Easy PDF uploading with file type validation.
+- **Copy-to-Clipboard:** One-click functionality to grab the generated email for immediate use.
+- **Responsive Design:** Fully optimized for desktop and mobile browsers.
+- **Dynamic Loading States:** Clear visual indicators while the Groq LLM is "thinking."
+- **Error Handling:** Graceful alerts if the backend is offline or the PDF is unreadable.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Development Setup
+
+### 1. Install Dependencies
+
+```bash
+npm install
+```
+
+### 2. Environment Variables
+
+Create a `.env` file in the frontend root to point to your FastAPI backend:
+
+```env
+VITE_API_URL=http://localhost:8000
+```
+
+### 3. Run Development Server
+
+```bash
+npm run dev
+```
+
+The app will typically be available at `http://localhost:5173`.
+
+---
+
+## 🔌 API Integration
+
+The frontend communicates with the FastAPI backend via a `multipart/form-data` POST request.
+
+**Endpoint:** `POST /generate-email`  
+**Payload:**
+
+- `file`: The `.pdf` resume file.
+- `job_description`: String containing the target job details.
+
+---
+
+## 📦 Build for Production
+
+To create an optimized production build:
+
+```bash
+npm run build
+```
+
+The output will be in the `/dist` folder, ready to be served by Nginx or hosted on platforms like Vercel/Netlify.

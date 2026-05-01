@@ -1,91 +1,74 @@
-# 🚀 AI-Powered Resume Application Assistant
+# 🚀 AI Resume & Application Assistant
 
-An intelligent **full-stack web application** that converts PDF resumes into **tailored, professional job application emails** using Large Language Models (LLMs).
+[![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/Frontend-React-61DAFB?style=flat&logo=react&logoColor=black)](https://reactjs.org/)
+[![Groq](https://img.shields.io/badge/AI-Groq_Cloud-orange?style=flat)](https://groq.com/)
 
-Designed for speed, privacy, and clarity—generate high-quality application emails in seconds.
+An intelligent full-stack solution that bridges the gap between a static resume and a personalized job application. By leveraging **Llama-3/Mixtral via Groq Cloud**, this tool parses complex PDF structures and generates tailored professional emails that align your specific experience with job requirements in seconds.
 
 ---
 
-## ✨ Features
+## ✨ Key Features
 
-- **PDF Resume Parsing**
-  - Extracts text from complex PDF layouts using `pdfplumber`
-- **AI-Powered Email Generation**
-  - Uses Groq Cloud (Llama-3 / Mixtral) to align experience with job requirements
-- **Interactive UI Feedback**
-  - Visual confirmation for uploads and clipboard actions
-- **Professional Output**
-  - Clean, plain-text emails with standard greetings and structure
-- **Privacy-First**
-  - Resume text extraction occurs locally before AI processing
+- **📄 Intelligent PDF Parsing**: Uses `pdfplumber` to handle multi-column layouts and extract clean text from complex resume structures.
+- **🤖 LLM-Driven Tailoring**: Dynamically maps resume bullet points to job description keywords using high-speed inference from **Groq Cloud**.
+- **⚡ Real-time Feedback**: Interactive UI with instant clipboard copying and visual upload confirmations.
+- **🛡️ Privacy-Centric**: Resume processing is handled securely, ensuring sensitive data is extracted and structured before reaching the AI inference layer.
+- **🎨 Modern UI**: A clean, minimalist interface built with React and Vite for optimal performance.
 
 ---
 
 ## 🧠 Tech Stack
 
-| Layer       | Technology                         |
-| ----------- | ---------------------------------- |
-| Frontend    | React, Vite, Axios                 |
-| Backend     | FastAPI, Uvicorn                   |
-| AI          | Groq Cloud API (Llama-3 / Mixtral) |
-| PDF Parsing | pdfplumber                         |
-| Styling     | Custom CSS (Modern Centered UI)    |
+| Layer               | Technology            | Role                                       |
+| :------------------ | :-------------------- | :----------------------------------------- |
+| **Frontend**        | React 18, Vite        | Single Page Application & State Management |
+| **Backend**         | FastAPI (Python 3.9+) | Asynchronous API handling & PDF processing |
+| **AI Inference**    | Groq Cloud API        | Llama-3 / Mixtral-8x7b LLM access          |
+| **Data Extraction** | pdfplumber            | Deterministic PDF text extraction          |
+| **Styling**         | Modern CSS            | Responsive, centered design                |
 
 ---
 
-## 🏗️ Architecture Overview
+## 🏗️ System Architecture
 
-- **Client (SPA)**
-  - Handles file uploads, job descriptions, and UI state
-- **API Layer**
-  - FastAPI endpoints for multipart PDF uploads and JSON payloads
-- **AI Service Layer**
-  - Dedicated Python service for prompt construction and AI inference
-
----
-
-## 📸 Screenshots
-
-- Resume Upload Interface
-- Job Description Input
-- Generated Email Output
-- Copy-to-Clipboard Success State
+1.  **Client-Side**: User uploads a `.pdf` resume and pastes a plain-text job description.
+2.  **API Layer**: FastAPI receives the multipart form data; `pdfplumber` extracts the raw text.
+3.  **Prompt Engineering**: The backend constructs a structured prompt containing the resume context and job requirements.
+4.  **Inference**: Groq Cloud processes the prompt and returns a professionally formatted email.
+5.  **Delivery**: The frontend renders the result with a one-click "Copy to Clipboard" feature.
 
 ---
 
 ## 🚀 Getting Started
 
-### Backend Setup
+### Prerequisites
+
+- Python 3.9+
+- Node.js (v18+)
+- A [Groq Cloud API Key](https://console.groq.com/)
+
+### 1. Backend Configuration
 
 ```bash
-    cd backend
-    python -m venv venv
-    source venv/bin/activate  # Windows: venv\Scripts\activate
-    pip install -r requirements.txt
+cd backend
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
 
-    echo "GROQ_API_KEY=your_api_key_here" > .env
-    uvicorn main:app --reload
+# Configure Environment
+echo "GROQ_API_KEY=your_api_key_here" > .env
+
+# Start Server
+uvicorn main:app --reload
+```
+
+### 2. Frontend Configuration
+
+```bash
+cd frontend
+npm install
+npm run dev
 ```
 
 ---
-
-### Frontend Setup
-
-```bash
-    cd frontend
-    npm install
-    npm run dev
-```
-
----
-
-✉️ Contact
-
-Fiteh Tesfaye
-
-LinkedIn: [fiteh.linkedIn](https://www.linkedin.com/in/fiteh-tesfaye-96510a32a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
-
-Email: fitehtesfaye@gmail.com
-
-🔗 Project Repository
-[fiteh.gitHub](https://github.com/Fiteh-21/resume-email-generator/)
